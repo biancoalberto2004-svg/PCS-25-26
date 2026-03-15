@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wshadow -Wl,--dependency-file=CMakeFiles/count_args.dir/link.d CMakeFiles/count_args.dir/count_args.cpp.o -o count_args
