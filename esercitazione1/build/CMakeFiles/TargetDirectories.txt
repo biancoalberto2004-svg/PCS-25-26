@@ -1,4 +1,0 @@
-/home/pcsdocker/Data/PCS-25-26/esercitazione1/build/CMakeFiles/media_temperature.dir
-/home/pcsdocker/Data/PCS-25-26/esercitazione1/build/CMakeFiles/count_args.dir
-/home/pcsdocker/Data/PCS-25-26/esercitazione1/build/CMakeFiles/edit_cache.dir
-/home/pcsdocker/Data/PCS-25-26/esercitazione1/build/CMakeFiles/rebuild_cache.dir
