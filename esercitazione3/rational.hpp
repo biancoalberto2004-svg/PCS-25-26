@@ -9,8 +9,9 @@ class rational
 	I den_;
 	
 	void semplifica() {
-		// Normalizza i casi limite (+/-Inf e Nan)
-		// E semplifica ai minimi termini i casi normali
+		// Normalizza i casi limite (+/-Inf e Nan):
+		// +Inf = 1/0, -Inf = -1/0, NaN = 0/0
+		// Semplifica ai minimi termini i casi normali
 		// Se il denominatore è negativo cambia i segni
 		
 		if (den_ == 0) {
@@ -195,10 +196,20 @@ public:
 			return *this;
 		}
 		
-		if (num_ == 0 && other.num_ == 0) {
-			// 0/0 = NaN
-			num_ = I{0};
-			den_ = I{0};
+		if (other.num_ == 0) {
+			if (num_ == 0) {
+				// 0/0 = NaN
+				num_ = I{0};
+				den_ = I{0};
+			}
+			else if (num_ > 0) {
+				num_ = I{1};
+				den_ = I{0};
+			}
+			else {
+				num_ = I{-1};
+				den_ = I{0};
+			}
 			return *this;
 		}
 		
