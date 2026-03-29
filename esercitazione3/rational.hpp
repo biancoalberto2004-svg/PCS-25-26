@@ -7,7 +7,12 @@ class rational
 {
 	I num_;
 	I den_;
+	
 	void semplifica() {
+		// Normalizza i casi limite (+/-Inf e Nan)
+		// E semplifica ai minimi termini i casi normali
+		// Se il denominatore è negativo cambia i segni
+		
 		if (den_ == 0) {
 			if (num_ > 0) {
 				num_ = I{1};  
@@ -52,10 +57,6 @@ public:
 		return (den_ == 0 && num_ != 0);
 	}
 	
-	bool is_zero() const {
-		return (den_ != 0 && num_ == 0);
-	}
-	
 	rational& operator+=(const rational& other) {
 		if (is_nan() || other.is_nan()) {
 			num_ = I{0};
@@ -64,7 +65,7 @@ public:
 		}
 		
 		if (is_inf() && other.is_inf()) {
-			/* (+Inf) + (-Inf) = NaN */
+			// (+Inf) + (-Inf) = NaN 
 			if (num_*other.num_ < 0) {
 				num_ = I{0};
 				den_ = I{0};
@@ -75,7 +76,6 @@ public:
 			}
 		}
 				
-		
 		if (is_inf()) {
 			return *this;
 		}
@@ -109,7 +109,7 @@ public:
 		}
 		
 		if (is_inf() && other.is_inf()) {
-			/* (+Inf) + (-Inf) = NaN */
+			// (+Inf) - (+Inf) = NaN 
 			if (num_*other.num_ > 0) {
 				num_ = I{0};
 				den_ = I{0};
@@ -188,8 +188,15 @@ public:
 			return *this;
 		}
 		
-		/* Inf/Inf = NaN */
 		if (is_inf() && other.is_inf()) {
+			// Inf/Inf = NaN 
+			num_ = I{0};
+			den_ = I{0};
+			return *this;
+		}
+		
+		if (num_ == 0 && other.num_ == 0) {
+			// 0/0 = NaN
 			num_ = I{0};
 			den_ = I{0};
 			return *this;
@@ -203,6 +210,7 @@ public:
 		}
 		
 		if (other.is_inf()) {
+			// x/Inf = 0
 			num_ = I{0};
 			den_ = I{1};
 			return *this;
@@ -236,6 +244,9 @@ operator<<(std::ostream& os, const rational<I>& q)
 		else {
 			os << "-Inf";
 		}
+	}
+	else if (q.num()==0) {
+		os << "0";
 	}
 	else {
 		os << q.num() << "/" << q.den();
