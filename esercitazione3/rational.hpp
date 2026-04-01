@@ -2,7 +2,7 @@
 #include <concepts>
 #include <numeric>
 
-template<typename I> requires std::integral<I>
+template<typename I> requires std::signed_integral<I>
 class rational
 {
 	I num_;
@@ -127,7 +127,7 @@ public:
 		
 		if (other.is_inf()) {
 			num_ = -other.num_;
-			den_ = -other.den_;
+			den_ = other.den_;
 			return *this;
 		}
 		
@@ -259,10 +259,12 @@ operator<<(std::ostream& os, const rational<I>& q)
 	else if (q.num()==0) {
 		os << "0";
 	}
+	else if (q.den()==1) { 
+	os << q.num(); 
+	}
 	else {
 		os << q.num() << "/" << q.den();
 	}
 	
 	return os;
 }
-

@@ -4,8 +4,8 @@
 int main(void)
 {
 	// casi normali
-	rational<int> a(3,7);
-	rational<int> b(2,5);
+	rational<int> a(5,2);
+	rational<int> b(6,4);
 	std::cout << "a = " << a << "\n";
 	std::cout << "b = " << b << "\n";
 	std::cout << "a+b = " << a+b << "\n";
