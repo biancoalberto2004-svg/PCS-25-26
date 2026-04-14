@@ -9,7 +9,7 @@ bool is_sorted(const std::vector<T>& vec)
 	}
 	
 	for (size_t i = 0; i < vec.size()-1; i++) {
-		if (vec[i]>vec[i+1]) {
+		if (vec[i] > vec[i+1]) {
 			return false;
 		}
 	}
@@ -28,23 +28,20 @@ void bubble_sort(std::vector<T>& vec) {
     }
 }
 
-#include <vector>
-
 template <typename T>
 void insertion_sort(std::vector<T>& vec) {
     int n = vec.size();
     for (int j = 1; j < n; ++j) {
         T key = vec[j];
-        int i = j - 1;
+        int i = j-1;
         
         while (i >= 0 && vec[i] > key) {
             vec[i+1] = vec[i];
             i -= 1;
         }
-        vec[i + 1] = key;
+        vec[i+1] = key;
     }
 }
-
 
 template <typename T>
 void selection_sort(std::vector<T>& vec) {
