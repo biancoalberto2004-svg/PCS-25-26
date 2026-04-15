@@ -1,3 +1,4 @@
+#include <string>
 #include <iostream>
 #include <cstdlib>
 #include <vector>
@@ -11,10 +12,10 @@ bool test_random() {
 	
 	std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<int> dist(1, 5000);
+    std::uniform_int_distribution<size_t> dist(1, 5000);
 	
 	for (int i=0; i<100; i++) {
-		int N = dist(gen);
+		size_t N = dist(gen);
 		std::vector<double> vec(N);
 		rf.fill(vec, -10000., +10000.);
 		selection_sort(vec);

@@ -49,7 +49,7 @@ int main() {
 	std::vector<double> vec_times_std;
 	vec_times_std.reserve(12);
 	
-	for (int i=4; i<=8192; i*=2) {
+	for (size_t i=4; i<=8192; i*=2) {
 		std::vector<double> vec(i);
 		rf.fill(vec, -10000., 10000.);
 		double time_bub = measure_bubble(vec);
