@@ -6,6 +6,17 @@
 #include "randfiller.h"
 #include "sorting.hpp"
 
+/* 
+Questo programma serve a misurare i tempi di esecuzione degli algoritmi di ordinamento
+testandoli su vettori di dimensione n=i^2 con i=2,...,14. Serve per valutare l'andamento
+globale degli algoritmi in maniera abbastanza qualitativa. Per questo motivo non ho
+usato la metodologia di misurazione espressa nella consegna (fare la media su un 
+centinaio di vettori preallocati) per limitare i tempi di esecuzione del programma
+(per ordinare i vettori per n=16384 il Bubble Sort ci avrebbe impiegato più di un minuto).
+Invece, nel programma confronta_tempi.cpp, che serve per trovare il punto di sorpasso
+degli algoritmi linearitmici su quelli quadratici, la metodologia è stata applicata correttamente.
+*/
+
 double measure_bubble(std::vector<double> vec) {
     timecounter tc; 
     tc.tic(); 
