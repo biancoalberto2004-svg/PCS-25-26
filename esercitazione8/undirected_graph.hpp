@@ -12,6 +12,7 @@ template<typename I> requires std::integral<I>
 class undirected_graph {
 private:
     
+	// Garantisce complessità media di O(1) nel lookup dei nodi
     std::unordered_map<I, std::set<I>> adj_list; 
 	
 	
