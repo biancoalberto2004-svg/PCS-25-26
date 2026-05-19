@@ -76,8 +76,8 @@ int main() {
     print_graph(G);
     std::cout << '\n';
 
-    fifo<std::pair<std::optional<int>, int>> coda;
-    undirected_graph<int> bfs_tree = graph_visit(G, source_node, coda);
+    fifo<std::pair<std::optional<int>, int>> q;
+    undirected_graph<int> bfs_tree = graph_visit(G, source_node, q);
 
 	std::cout << "Nodo sorgente: " << source_node << "\n\n";
 
@@ -85,8 +85,8 @@ int main() {
     print_graph(bfs_tree);
     std::cout << '\n';
 
-    lifo<std::pair<std::optional<int>, int>> pila;
-    undirected_graph<int> dfs_tree = graph_visit(G, source_node, pila);
+    lifo<std::pair<std::optional<int>, int>> s;
+    undirected_graph<int> dfs_tree = graph_visit(G, source_node, s);
 
     std::cout << "Albero risultante da DFS: \n";
     print_graph(dfs_tree);
@@ -109,7 +109,7 @@ int main() {
         int distance = dist[node];
         
         if (distance > static_cast<int>(G.all_nodes().size()+1)) {
-            std::cout << "Nodo " << node << ": distanza infinito Cammino minimo: nessuno\n";
+            std::cout << "Nodo " << node << ": distanza infinito. Cammino minimo: nessuno\n";
         } else {
             std::cout << "Nodo " << node << ": distanza " << distance << ". Cammino minimo: ";
 			print_path(node, pred, source_node);
