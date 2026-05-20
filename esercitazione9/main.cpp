@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <utility> 
 #include <algorithm>
 #include "undirected_graph.hpp"
@@ -40,6 +41,21 @@ void print_path(I target, const std::map<I, std::optional<I>>& pred, I source) {
     
     // Stampa il nodo corrente durante il ritorno della ricorsione
     std::cout << " -> " << target;
+}
+
+template <typename I>
+void to_dot(const undirected_graph<I>& graph, const std::string& filename, const int& source_node) {
+	std::ofstream file(filename);
+	
+	file << "graph G {\n";
+	file << "layout=dot\n";
+    file << "node [shape=circle, style=filled, fillcolor=lightblue, fontname=\"Helvetica\"]\n";
+    file << "edge [color=black, penwidth=2]\n";
+	file << source_node << " [fillcolor=gold]\n";
+	for (const auto& edge : graph.all_edges()) {
+		file << "  " << edge.from() << " -- " << edge.to() << ";\n";
+	}
+	file << "}\n";
 }
 
 int main() {
@@ -97,6 +113,11 @@ int main() {
     std::cout << "Albero risultante da DFS ricorsiva: \n";
 	print_graph(recursive_dfs_tree);
     std::cout << '\n';
+
+	to_dot(G, "original.dot", 0);
+	to_dot(bfs_tree, "bfs.dot", 0);
+	to_dot(dfs_tree, "dfs.dot", 0);
+	to_dot(recursive_dfs_tree, "recursive_dfs.dot", 0);
 
 	std::cout << "Algoritmo di Dijkstra: \n";
     
